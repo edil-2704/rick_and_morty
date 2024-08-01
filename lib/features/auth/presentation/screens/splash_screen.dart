@@ -1,6 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rick_and_morty/features/presentation/screens/main_screen.dart';
+import 'package:rick_and_morty/features/auth/presentation/screens/splash_screen_2.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -10,18 +12,19 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
+    {
   @override
   void initState() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    super.initState();
-    Future.delayed(const Duration(seconds: 5), () {
+    Timer(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (_) => MainScreen(),
+          builder: (context) => SplashScreen2(),
         ),
       );
     });
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+    super.initState();
+    // Future.delayed(const Duration(seconds: 5), () {});
   }
 
   @override

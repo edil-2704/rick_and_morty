@@ -1,5 +1,6 @@
 {
-    "hello": "Hello",
-    "car": "Car",
-    "start": "Start"
+    "login": "Login",
+    "password": "Password",
+    "sign in": "Sign in",
+    "create": "Create"
 }

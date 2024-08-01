@@ -21,9 +21,5 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ky';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "car": MessageLookupByLibrary.simpleMessage("Унаа"),
-        "hello": MessageLookupByLibrary.simpleMessage("Салам"),
-        "start": MessageLookupByLibrary.simpleMessage("Баштоо")
-      };
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
 }

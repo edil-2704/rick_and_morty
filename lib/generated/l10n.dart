@@ -50,31 +50,33 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Hello`
-  String get hello {
+  /// `Login`
+  String get login {
     return Intl.message(
-      'Hello',
-      name: 'hello',
+      'Login',
+      name: 'login',
       desc: '',
       args: [],
     );
   }
 
-  /// `Car`
-  String get car {
+  /// `Password`
+  String get password {
     return Intl.message(
-      'Car',
-      name: 'car',
+      'Password',
+      name: 'password',
       desc: '',
       args: [],
     );
   }
 
-  /// `Start`
-  String get start {
+  // skipped getter for the 'sign in' key
+
+  /// `Create`
+  String get create {
     return Intl.message(
-      'Start',
-      name: 'start',
+      'Create',
+      name: 'create',
       desc: '',
       args: [],
     );
