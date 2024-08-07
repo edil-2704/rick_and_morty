@@ -1,22 +1,42 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rick_and_morty/features/auth/presentation/logic/bloc/auth_bloc.dart';
 import 'package:rick_and_morty/features/auth/presentation/screens/registration_screen.dart';
 import 'package:rick_and_morty/generated/l10n.dart';
 
-// ignore: must_be_immutable
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   TextEditingController loginController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
 
-  Future<void> createUserWithEmailAndPassword() async {
-    FirebaseAuth.instance.createUserWithEmailAndPassword(
+  final AuthBloc authBloc = AuthBloc();
+
+  Future<void> signInWithEmailAndPassword() async {
+    FirebaseAuth.instance.signInWithEmailAndPassword(
       email: loginController.text,
       password: passwordController.text,
     );
   }
 
-  LoginScreen({super.key});
+  @override
+  void initState() {
+    authBloc.add(
+      LoginEvent(
+        name: loginController.text,
+        passwordToLogin: passwordController.text,
+      ),
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,15 +57,10 @@ class LoginScreen extends StatelessWidget {
                 ),
                 Text(S.of(context).login),
                 SizedBox(height: 10),
-                TextField(
+                TextFieldWidget(
                   controller: loginController,
-                  decoration: InputDecoration(
-                    hintText: '${S.of(context).login}',
-                    prefixIcon: Icon(Icons.person),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
+                  hintText: '${S.of(context).login}',
+                  prefixIcon: Icon(Icons.person),
                 ),
                 SizedBox(height: 10),
                 Text(S.of(context).password),
@@ -62,22 +77,38 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 40),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => RegistrationScreen()));
+                BlocListener<AuthBloc, AuthState>(
+                  bloc: authBloc,
+                  listener: (context, state) {
+                    print(state);
+                    if (state is AuthLoadedState) {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(content: Text('daaaaa')));
+                    }
                   },
-                  child: Text(S.of(context).login),
-                  style: ElevatedButton.styleFrom(
-                    splashFactory: NoSplash.splashFactory,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      authBloc.add(
+                        LoginEvent(
+                          name: loginController.text,
+                          passwordToLogin: passwordController.text,
+                        ),
+                      );
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => RegistrationScreen()));
+                    },
+                    child: Text(S.of(context).login),
+                    style: ElevatedButton.styleFrom(
+                      splashFactory: NoSplash.splashFactory,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      backgroundColor: Color(0xff22A2BD),
+                      foregroundColor: Colors.white,
+                      minimumSize: Size(MediaQuery.of(context).size.width, 48),
                     ),
-                    backgroundColor: Color(0xff22A2BD),
-                    foregroundColor: Colors.white,
-                    minimumSize: Size(MediaQuery.of(context).size.width, 48),
                   ),
                 ),
                 SizedBox(height: 20),
@@ -111,6 +142,38 @@ class LoginScreen extends StatelessWidget {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class TextFieldWidget extends StatelessWidget {
+  const TextFieldWidget({
+    super.key,
+    required this.controller,
+    required this.hintText,
+    required this.prefixIcon,
+    this.suffixIcon,
+    this.isObsecured,
+  });
+
+  final TextEditingController controller;
+  final String hintText;
+  final Widget prefixIcon;
+  final Widget? suffixIcon;
+  final bool? isObsecured;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        fillColor: Color(0xffF2F2F2),
+        hintText: hintText,
+        prefixIcon: prefixIcon,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
         ),
       ),
     );

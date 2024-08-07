@@ -24,10 +24,8 @@ class DefaultFirebaseOptions {
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for android - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+       return android;
+       
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
@@ -60,5 +58,14 @@ class DefaultFirebaseOptions {
     databaseURL: 'https://rick-n-morty-4c652-default-rtdb.firebaseio.com',
     storageBucket: 'rick-n-morty-4c652.appspot.com',
     iosBundleId: 'com.example.rickAndMorty',
+  );
+
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyAJsxPylXVB7tWEoPW83i-IEeqLDBjq5Ek',
+    appId: '1:980492932072:ios:921fe14b974b343af00a5d',
+    messagingSenderId: '980492932072',
+    projectId: 'rick-n-morty-4c652',
+    databaseURL: 'https://rick-n-morty-4c652-default-rtdb.firebaseio.com',
+    storageBucket: 'rick-n-morty-4c652.appspot.com',
   );
 }
