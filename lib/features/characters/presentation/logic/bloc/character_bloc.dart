@@ -26,10 +26,10 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
       emit(CharacterLoadingState());
 
       try {
-        final Result result =
+        final CharacterResult result =
             await charUseCase.getCharactersById(id: event.id);
 
-        emit(CharacterLoadedInfoState(characterResult: result));
+        emit(CharacterLoadedInfoState(result: result));
       } catch (e) {
         emit(CharacterErrorState(error: CatchException.convertException(e)));
       }

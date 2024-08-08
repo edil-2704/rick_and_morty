@@ -1,22 +1,22 @@
 import 'package:dio/dio.dart';
-import 'package:rick_and_morty/features/characters/data/models/characters_models.dart';
-import 'package:rick_and_morty/features/characters/domain/char_repository/char_repository.dart';
+import 'package:rick_and_morty/features/episodes/data/models/episode_models.dart';
+import 'package:rick_and_morty/features/episodes/domain/episode_repository/episode_repository.dart';
 import 'package:rick_and_morty/internal/helpers/api_requester/api_requester.dart';
 import 'package:rick_and_morty/internal/helpers/catch_exception/catch_exception.dart';
 
-class CharRepositoryImpl implements CharRepository {
+class EpisodeRepositoryImpl implements EpisodeRepository {
   final ApiRequester apiRequester = ApiRequester();
 
   @override
-  Future<CharacterModel> getAllCharacters() async {
+  Future<EpisodeModel> getAllEpisodes() async {
     try {
-      Response response = await apiRequester.toGet('character');
+      Response response = await apiRequester.toGet('episode');
 
-      print('getAllUsers = ${response.statusCode}');
-      print('getAllUsers = ${response.data}');
+      print('getAllEpisodes = ${response.statusCode}');
+      print('getAllEpisodes = ${response.data}');
 
       if (response.statusCode == 200) {
-        return CharacterModel.fromJson(response.data);
+        return EpisodeModel.fromJson(response.data);
       }
       throw response;
     } catch (e) {
@@ -26,16 +26,16 @@ class CharRepositoryImpl implements CharRepository {
   }
 
   @override
-  Future<CharacterResult> getCharactersById({required int id}) async {
+  Future<EpisodeResult> getEpisodesById({required int id}) async {
     try {
-      Response response = await apiRequester.toGet('character/$id');
+      Response response = await apiRequester.toGet('episode/$id');
 
       print('getCharactersById = ${response.statusCode}');
       print('getCharactersById = ${response.data}');
 
       print(response.data);
       if (response.statusCode == 200) {
-        return CharacterResult.fromJson(response.data);
+        return EpisodeResult.fromJson(response.data);
       }
 
       throw response;

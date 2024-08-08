@@ -15,7 +15,7 @@ class CharUseCase {
     return await charRepository.getAllCharacters();
   }
 
-  Future<Result> getCharactersById({required int id}) async {
+  Future<CharacterResult> getCharactersById({required int id}) async {
     return await charRepository.getCharactersById(id: id);
   }
 }

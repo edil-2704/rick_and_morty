@@ -20,7 +20,7 @@ final class CharacterErrorState extends CharacterState {
 }
 
 final class CharacterLoadedInfoState extends CharacterState {
-  final Result characterResult;
+  final CharacterResult result;
 
-  CharacterLoadedInfoState({required this.characterResult});
+  CharacterLoadedInfoState({required this.result});
 }

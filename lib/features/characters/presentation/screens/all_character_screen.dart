@@ -38,7 +38,7 @@ class _AllCharacterScreenState extends State<AllCharacterScreen> {
           child: Column(
             children: [
               SearchWidget(
-                searchTextController: searchTextController,
+                searchTextController: searchTextController, hintText: 'Найти персонажа',
               ),
               SizedBox(height: 40),
               Row(

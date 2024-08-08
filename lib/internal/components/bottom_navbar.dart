@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty/features/characters/presentation/screens/all_character_screen.dart';
+import 'package:rick_and_morty/features/episodes/presentation/screens/all_episodes_screen.dart';
 import 'package:rick_and_morty/internal/constants/theme_helper/app_colors.dart';
 
 class BottomNavBarScreen extends StatefulWidget {
@@ -23,9 +24,9 @@ class _BottomNavBarState extends State<BottomNavBarScreen> {
     //локация
     AllCharacterScreen(),
     //Эпизоды
-    AllCharacterScreen(),
+    AllEpisodesScreen(),
     //настройки
-    AllCharacterScreen(),
+    AllEpisodesScreen(),
   ];
 
   @override

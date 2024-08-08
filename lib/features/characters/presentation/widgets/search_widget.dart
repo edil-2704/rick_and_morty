@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class SearchWidget extends StatelessWidget {
   final TextEditingController searchTextController;
+  final String hintText;
   const SearchWidget({
     super.key,
-    required this.searchTextController,
+    required this.searchTextController, required this.hintText,
   });
 
   @override
@@ -12,7 +13,7 @@ class SearchWidget extends StatelessWidget {
     return TextField(
       controller: searchTextController,
       decoration: InputDecoration(
-        hintText: 'Найти персонажа',
+        hintText: hintText,
         fillColor: Colors.grey.shade300,
         suffixIcon: Icon(Icons.filter_alt_outlined),
         prefixIcon: Icon(Icons.search_rounded),

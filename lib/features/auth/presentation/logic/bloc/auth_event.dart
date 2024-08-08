@@ -16,15 +16,15 @@ class LoginEvent extends AuthEvent {
 class RegisterEvent extends AuthEvent {
   final String name;
   final String surname;
-  final String patronymToRegistr;
-  final String loginToRegistr;
-  final String passwordToRegistr;
+  final String patronym;
+  final String email;
+  final String password;
 
   RegisterEvent({
     required this.name,
     required this.surname,
-    required this.patronymToRegistr,
-    required this.loginToRegistr,
-    required this.passwordToRegistr,
+    required this.patronym,
+    required this.email,
+    required this.password,
   });
 }

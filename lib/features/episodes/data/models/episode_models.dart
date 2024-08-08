@@ -9,8 +9,8 @@ EpisodeModel episodeModelFromJson(String str) => EpisodeModel.fromJson(json.deco
 String episodeModelToJson(EpisodeModel data) => json.encode(data.toJson());
 
 class EpisodeModel {
-    final Info? info;
-    final List<Result>? results;
+    final EpisodeInfo? info;
+    final List<EpisodeResult>? results;
 
     EpisodeModel({
         this.info,
@@ -18,8 +18,8 @@ class EpisodeModel {
     });
 
     factory EpisodeModel.fromJson(Map<String, dynamic> json) => EpisodeModel(
-        info: json["info"] == null ? null : Info.fromJson(json["info"]),
-        results: json["results"] == null ? [] : List<Result>.from(json["results"]!.map((x) => Result.fromJson(x))),
+        info: json["info"] == null ? null : EpisodeInfo.fromJson(json["info"]),
+        results: json["results"] == null ? [] : List<EpisodeResult>.from(json["results"]!.map((x) => EpisodeResult.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
@@ -28,20 +28,20 @@ class EpisodeModel {
     };
 }
 
-class Info {
+class EpisodeInfo {
     final int? count;
     final int? pages;
     final String? next;
     final dynamic prev;
 
-    Info({
+    EpisodeInfo({
         this.count,
         this.pages,
         this.next,
         this.prev,
     });
 
-    factory Info.fromJson(Map<String, dynamic> json) => Info(
+    factory EpisodeInfo.fromJson(Map<String, dynamic> json) => EpisodeInfo(
         count: json["count"],
         pages: json["pages"],
         next: json["next"],
@@ -56,7 +56,7 @@ class Info {
     };
 }
 
-class Result {
+class EpisodeResult {
     final int? id;
     final String? name;
     final String? airDate;
@@ -65,7 +65,7 @@ class Result {
     final String? url;
     final DateTime? created;
 
-    Result({
+    EpisodeResult({
         this.id,
         this.name,
         this.airDate,
@@ -75,7 +75,7 @@ class Result {
         this.created,
     });
 
-    factory Result.fromJson(Map<String, dynamic> json) => Result(
+    factory EpisodeResult.fromJson(Map<String, dynamic> json) => EpisodeResult(
         id: json["id"],
         name: json["name"],
         airDate: json["air_date"],

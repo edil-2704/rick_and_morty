@@ -10,7 +10,7 @@ String locationModelToJson(LocationModel data) => json.encode(data.toJson());
 
 class LocationModel {
     final Info? info;
-    final List<Result>? results;
+    final List<LocationResult>? results;
 
     LocationModel({
         this.info,
@@ -19,7 +19,7 @@ class LocationModel {
 
     factory LocationModel.fromJson(Map<String, dynamic> json) => LocationModel(
         info: json["info"] == null ? null : Info.fromJson(json["info"]),
-        results: json["results"] == null ? [] : List<Result>.from(json["results"]!.map((x) => Result.fromJson(x))),
+        results: json["results"] == null ? [] : List<LocationResult>.from(json["results"]!.map((x) => LocationResult.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
@@ -56,7 +56,7 @@ class Info {
     };
 }
 
-class Result {
+class LocationResult {
     final int? id;
     final String? name;
     final String? type;
@@ -65,7 +65,7 @@ class Result {
     final String? url;
     final DateTime? created;
 
-    Result({
+    LocationResult({
         this.id,
         this.name,
         this.type,
@@ -75,7 +75,7 @@ class Result {
         this.created,
     });
 
-    factory Result.fromJson(Map<String, dynamic> json) => Result(
+    factory LocationResult.fromJson(Map<String, dynamic> json) => LocationResult(
         id: json["id"],
         name: json["name"],
         type: json["type"],

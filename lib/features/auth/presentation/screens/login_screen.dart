@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/features/auth/presentation/logic/bloc/auth_bloc.dart';
 import 'package:rick_and_morty/features/auth/presentation/screens/registration_screen.dart';
+import 'package:rick_and_morty/features/auth/presentation/widgets/common_elevated_button.dart';
 import 'package:rick_and_morty/generated/l10n.dart';
+import 'package:rick_and_morty/internal/components/texr_field.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -86,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           .showSnackBar(SnackBar(content: Text('daaaaa')));
                     }
                   },
-                  child: ElevatedButton(
+                  child: ElevatedButtonWidget(
                     onPressed: () {
                       authBloc.add(
                         LoginEvent(
@@ -99,16 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       //     MaterialPageRoute(
                       //         builder: (context) => RegistrationScreen()));
                     },
-                    child: Text(S.of(context).login),
-                    style: ElevatedButton.styleFrom(
-                      splashFactory: NoSplash.splashFactory,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      backgroundColor: Color(0xff22A2BD),
-                      foregroundColor: Colors.white,
-                      minimumSize: Size(MediaQuery.of(context).size.width, 48),
-                    ),
+                    title: S.of(context).create,
                   ),
                 ),
                 SizedBox(height: 20),
@@ -142,38 +135,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class TextFieldWidget extends StatelessWidget {
-  const TextFieldWidget({
-    super.key,
-    required this.controller,
-    required this.hintText,
-    required this.prefixIcon,
-    this.suffixIcon,
-    this.isObsecured,
-  });
-
-  final TextEditingController controller;
-  final String hintText;
-  final Widget prefixIcon;
-  final Widget? suffixIcon;
-  final bool? isObsecured;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      decoration: InputDecoration(
-        fillColor: Color(0xffF2F2F2),
-        hintText: hintText,
-        prefixIcon: prefixIcon,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
         ),
       ),
     );

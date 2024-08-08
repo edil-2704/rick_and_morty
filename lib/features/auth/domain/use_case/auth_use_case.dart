@@ -6,8 +6,12 @@ class AuthUseCase {
 
   AuthUseCase({required this.authRepository});
 
-  Future<UserCredential?> signIn() async {
-    return await authRepository.signIn();
+  Future<UserCredential?> signIn(
+      {required String email, required String password}) async {
+    return await authRepository.signIn(
+      email: email,
+      password: password,
+    );
   }
 
   Future<UserCredential?> signUp(

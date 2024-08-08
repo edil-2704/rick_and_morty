@@ -9,5 +9,5 @@ abstract class CharRepository {
   /// EN: [getUserById] - getting user by Id
   ///
   /// RU: [getUserById] - получение пользователя по ID
-  Future<Result> getCharactersById({required int id});
+  Future<CharacterResult> getCharactersById({required int id});
 }
