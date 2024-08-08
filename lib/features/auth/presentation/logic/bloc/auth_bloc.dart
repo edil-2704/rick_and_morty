@@ -48,9 +48,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
         emit(AuthLoadedState(userCredential: result));
       } on FirebaseAuthException catch (e) {
+        log('erros is $e');
         emit(AuthErrorState(error: e));
       } catch (e) {
-        log('erros is $e');
+        
         CatchException.convertException(e);
       }
     });

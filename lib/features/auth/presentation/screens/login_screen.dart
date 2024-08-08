@@ -67,16 +67,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 10),
                 Text(S.of(context).password),
                 SizedBox(height: 10),
-                TextField(
+               TextFieldWidget(
                   controller: passwordController,
-                  decoration: InputDecoration(
-                    hintText: '${S.of(context).password}',
-                    suffixIcon: Icon(Icons.visibility_off_rounded),
-                    prefixIcon: Icon(Icons.password),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
+                  hintText: 'Password',
+                  suffixIcon: Icon(Icons.visibility_off_sharp),
+                  prefixIcon: Icon(Icons.person),
                 ),
                 SizedBox(height: 40),
                 BlocListener<AuthBloc, AuthState>(
